@@ -56,11 +56,7 @@ terminal = "wezterm"
 editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default super.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
+-- +++ MOD KEYS +++
 super = "Mod4"
 alt = "Mod1"
 
@@ -71,17 +67,6 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
-    --[[ awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.max,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se, ]]
 }
 -- }}}
 
@@ -264,11 +249,6 @@ globalkeys = gears.table.join(
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
     ),
-    awful.key(
-        { super, },  "Escape",
-        awful.tag.history.restore,
-        { description = "go back", group = "tag" }
-    ),
 
     awful.key({ super,}, "w",
         function ()
@@ -282,11 +262,6 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    --[[ awful.key(
-        { super, },  "w",
-        function () mymainmenu:show() end,
-        { description = "show main menu", group = "awesome" }
-    ), ]]
 
     -- Layout manipulation
     awful.key(
@@ -299,29 +274,6 @@ globalkeys = gears.table.join(
         function () awful.client.swap.byidx( -1)    end,
         { description = "swap with previous client by index", group = "client" }
     ),
-    awful.key(
-        { super,  "Control" },  "j",
-        function () awful.screen.focus_relative( 1) end,
-        { description = "focus the next screen", group = "screen" }
-    ),
-    awful.key(
-        { super,  "Control" },  "k",
-        function () awful.screen.focus_relative(-1) end,
-        { description = "focus the previous screen", group = "screen" }
-    ),
-    awful.key(
-        { super, },  "u",
-        awful.client.urgent.jumpto,
-        { description = "jump to urgent client", group = "client" }
-    ),
-    awful.key({ super,}, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
 
     -- Standard program
     awful.key(
@@ -341,36 +293,6 @@ globalkeys = gears.table.join(
     ),
 
     awful.key(
-        { super, },  "l",
-            function () awful.tag.incmwfact( 0.05)          end,
-        { description = "increase master width factor", group = "layout" }
-    ),
-    awful.key(
-        { super, },  "h",
-            function () awful.tag.incmwfact(-0.05)          end,
-        { description = "decrease master width factor", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Shift"   },  "h",     function () awful.tag.incnmaster( 1, nil,
-        true) end,
-        { description = "increase the number of master clients", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Shift"   },  "l",     function () awful.tag.incnmaster(-1, nil,
-        true) end,
-        { description = "decrease the number of master clients", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Control" },  "h",     function () awful.tag.incncol( 1, nil,
-        true)    end,
-        { description = "increase the number of columns", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Control" },  "l",     function () awful.tag.incncol(-1, nil,
-        true)    end,
-        { description = "decrease the number of columns", group = "layout" }
-    ),
-    awful.key(
         { super, },  "space",
         function () awful.layout.inc( 1)                end,
         { description = "select next", group = "layout" }
@@ -381,7 +303,7 @@ globalkeys = gears.table.join(
         { description = "select previous", group = "layout" }
     ),
 
-    awful.key(
+    --[[ awful.key(
         { super, "Control" }, "n",
         function ()
             local c = awful.client.restore()
@@ -393,14 +315,8 @@ globalkeys = gears.table.join(
             end
         end,
         {description = "restore minimized", group = "client"}
-    ),
+    ), ]]
 
-    -- Prompt
-    awful.key(
-        { super }, "r",
-        function () awful.screen.focused().mypromptbox:run() end,
-        {description = "run prompt", group = "launcher"}
-    ),
 
     --[[ awful.key({ super }, "x",
         function ()
@@ -413,6 +329,7 @@ globalkeys = gears.table.join(
         end,
         {description = "lua execute prompt", group = "awesome"}
     ), ]]
+
     -- Menubar
     awful.key(
         { super, "Shift" }, "a",
@@ -473,53 +390,6 @@ clientkeys = gears.table.join(
         { super, "Control" }, "space",
         awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }
-    ),
-    awful.key(
-        { super, "Control" },  "Return",
-        function (c) c:swap(awful.client.getmaster()) end,
-        { description = "move to master", group = "client" }
-    ),
-    awful.key(
-        { super, }, "o",
-        function (c) c:move_to_screen() end,
-        { description = "move to screen", group = "client" }
-    ),
-    awful.key(
-        { super, }, "t",
-             function (c) c.ontop = not c.ontop end,
-        { description = "toggle keep on top", group = "client" }
-    ),
-    awful.key(
-        { super, }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end,
-        {description = "minimize", group = "client"}),
-    awful.key(
-        { super, }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end,
-        {description = "(un)maximize", group = "client"}
-    ),
-    awful.key(
-        { super, "Control" }, "m",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end,
-        {description = "(un)maximize vertically", group = "client"}
-    ),
-    awful.key(
-        { super, "Shift" }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end ,
-        {description = "(un)maximize horizontally", group = "client"}
     )
 )
 
@@ -633,10 +503,9 @@ awful.rules.rules = {
                 "DTA",  -- Firefox addon DownThemAll.
                 "copyq",  -- Includes session name in class.
                 "pinentry",
- },
+            },
             class = {
                 "Arandr",
-                "Blueman-manager",
                 "Gpick",
                 "Kruler",
                 "MessageWin",  -- kalarm.
@@ -645,18 +514,18 @@ awful.rules.rules = {
                 "Wpa_gui",
                 "veromix",
                 "xtightvncviewer"
- },
+            },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
             name = {
                 "Event Tester",  -- xev.
- },
+            },
             role = {
                 "AlarmWindow",  -- Thunderbird's calendar.
                 "ConfigManager",  -- Thunderbird's about:config.
-                "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
- }
+                -- "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+            },
         },
         properties = { floating = true }
     },
@@ -664,7 +533,7 @@ awful.rules.rules = {
     -- Add titlebars to normal clients and dialogs
     {
         rule_any = {
-            type = { "normal", "dialog" }
+            type = { "dialog" }
         },
         properties = { titlebars_enabled = true }
     },
