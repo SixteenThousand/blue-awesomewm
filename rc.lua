@@ -424,6 +424,33 @@ globalkeys = gears.table.join(
             awful.spawn("rofi -show drun")
         end,
         { description = "rofi app launcher", group = "launcher" }
+    ),
+
+    -- hardware stuff
+    awful.key(
+        {}, "XF86MonBrightnessDown",
+        function() awful.spawn("brightnessctl set 5%-") end,
+        {}
+    ),
+    awful.key(
+        {}, "XF86MonBrightnessUp",
+        function() awful.spawn("brightnessctl set 5%+") end,
+        {}
+    ),
+    awful.key(
+        {}, "XF86AudioPlay",
+        function() awful.spawn("playerctl play-pause") end,
+        {}
+    ),
+    awful.key(
+        { }, "XF86AudioLowerVolume",
+        function() awful.spawn("amixer sset Master 2%-") end,
+        {}
+    ),
+    awful.key(
+        { }, "XF86AudioRaiseVolume",
+        function() awful.spawn("amixer sset Master 2%+") end,
+        {}
     )
 )
 
