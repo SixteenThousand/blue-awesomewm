@@ -131,9 +131,9 @@ local tasklist_buttons = gears.table.join(
             c.minimized = true
         else
             c:emit_signal(
-            "request::activate",
-            "tasklist",
-            {raise = true}
+                "request::activate",
+                "tasklist",
+                {raise = true}
             )
         end
     end),
