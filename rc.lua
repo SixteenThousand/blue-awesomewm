@@ -382,7 +382,7 @@ clientkeys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}
     ),
     awful.key(
-        { super, "Shift" }, "c",
+        { super, }, "q",
         function (c) c:kill() end,
         { description = "close", group = "client" }
     ),
@@ -430,6 +430,10 @@ for i = 1, 9 do
                     local tag = client.focus.screen.tags[i]
                     if tag then
                         client.focus:move_to_tag(tag)
+                        local tag = awful.screen.focused().tags[i]
+                        if tag then
+                            tag:view_only()
+                        end
                     end
                end
             end,
