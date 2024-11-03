@@ -281,14 +281,19 @@ globalkeys = gears.table.join(
         { description = "open a browser", group = "launcher" }
     ),
     awful.key(
-        { super,  "Control" },  "r",
+        { super, "Control" }, "r",
         awesome.restart,
         { description = "reload awesome", group = "awesome" }
     ),
     awful.key(
-        { super,  "Shift"   },  "q",
+        { super, "Shift" }, "q",
         awesome.quit,
         { description = "quit awesome", group = "awesome" }
+    ),
+    awful.key(
+        { super, "Shift" }, "Delete",
+        function() awesome.spawn("systemctl poweroff") end,
+        { description = "turn off computer", group = "awesome" }
     ),
 
     awful.key(
