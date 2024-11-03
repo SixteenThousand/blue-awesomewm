@@ -276,6 +276,11 @@ globalkeys = gears.table.join(
         { description = "open a terminal", group = "launcher" }
     ),
     awful.key(
+        { super, }, "b",
+        function() awful.spawn("firefox") end,
+        { description = "open a browser", group = "launcher" }
+    ),
+    awful.key(
         { super,  "Control" },  "r",
         awesome.restart,
         { description = "reload awesome", group = "awesome" }
