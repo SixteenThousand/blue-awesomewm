@@ -380,35 +380,51 @@ globalkeys = gears.table.join(
         { description = "select previous", group = "layout" }
     ),
 
-    awful.key({ modkey, "Control" }, "n",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                    c:emit_signal(
-                        "request::activate", "key.unminimize", {raise = true}
-                    )
-                  end
-              end,
-              {description = "restore minimized", group = "client"}),
+    awful.key(
+        { modkey, "Control" }, "n",
+        function ()
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+              c:emit_signal(
+                  "request::activate", "key.unminimize", {raise = true}
+              )
+            end
+        end,
+        {description = "restore minimized", group = "client"}
+    ),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    awful.key(
+        { modkey }, "r",
+        function () awful.screen.focused().mypromptbox:run() end,
+        {description = "run prompt", group = "launcher"}
+    ),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-       }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
+    --[[ awful.key({ modkey }, "x",
+        function ()
+            awful.prompt.run {
+                prompt       = "Run Lua code: ",
+                textbox      = awful.screen.focused().mypromptbox.widget,
+                exe_callback = awful.util.eval,
+                history_path = awful.util.get_cache_dir() .. "/history_eval"
+            }
+        end,
+        {description = "lua execute prompt", group = "awesome"}
+    ), ]]
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key(
+        { modkey, "Shift" }, "a",
+        function() menubar.show() end,
+        {description = "show the menubar", group = "launcher"}
+    ),
+    awful.key(
+        { modkey, }, "a",
+        function()
+            awful.spawn("rofi -show drun")
+        end,
+        { description = "rofi app launcher", group = "launcher" }
+    )
 )
 
 clientkeys = gears.table.join(
