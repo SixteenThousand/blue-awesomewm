@@ -140,10 +140,10 @@ local tasklist_buttons = gears.table.join(
     awful.button({ }, 3, function()
         awful.menu.client_list({ theme = { width = 250 } })
     end),
-    awful.button({ }, 4, function ()
+    awful.button({ }, 4, function()
         awful.client.focus.byidx(1)
     end),
-    awful.button({ }, 5, function ()
+    awful.button({ }, 5, function()
         awful.client.focus.byidx(-1)
     end)
 )
@@ -176,10 +176,10 @@ awful.screen.connect_for_each_screen(function(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
-        awful.button({ }, 1, function () awful.layout.inc( 1) end),
-        awful.button({ }, 3, function () awful.layout.inc(-1) end),
-        awful.button({ }, 4, function () awful.layout.inc( 1) end),
-        awful.button({ }, 5, function () awful.layout.inc(-1) end)
+        awful.button({ }, 1, function() awful.layout.inc( 1) end),
+        awful.button({ }, 3, function() awful.layout.inc(-1) end),
+        awful.button({ }, 4, function() awful.layout.inc( 1) end),
+        awful.button({ }, 5, function() awful.layout.inc(-1) end)
     ))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
@@ -220,7 +220,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function() mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -245,13 +245,13 @@ globalkeys = gears.table.join(
     ),
 
     awful.key({ super,}, "w",
-        function ()
+        function()
             awful.client.focus.byidx( 1)
         end,
         {description = "focus next by index", group = "client"}
     ),
     awful.key({ super,}, "x",
-        function ()
+        function()
             awful.client.focus.byidx(-1)
         end,
         {description = "focus previous by index", group = "client"}
@@ -259,20 +259,20 @@ globalkeys = gears.table.join(
 
     -- Layout manipulation
     awful.key(
-        { super,  "Shift"   },  "j",
-        function () awful.client.swap.byidx(  1)    end,
+        { super, "Shift" }, "j",
+        function() awful.client.swap.byidx(1) end,
         { description = "swap with next client by index", group = "client" }
     ),
     awful.key(
-        { super,  "Shift"   },  "k",
-        function () awful.client.swap.byidx( -1)    end,
+        { super, "Shift" }, "k",
+        function() awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
     ),
 
     -- Apps
     awful.key(
         { super, },  "Return",
-        function () awful.spawn(terminal) end,
+        function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }
     ),
     awful.key(
@@ -303,18 +303,18 @@ globalkeys = gears.table.join(
 
     awful.key(
         { super, },  "space",
-        function () awful.layout.inc( 1)                end,
+        function() awful.layout.inc( 1) end,
         { description = "select next", group = "layout" }
     ),
     awful.key(
         { super,  "Shift"   },  "space",
-        function () awful.layout.inc(-1)                end,
+        function() awful.layout.inc(-1) end,
         { description = "select previous", group = "layout" }
     ),
 
     --[[ awful.key(
         { super, "Control" }, "n",
-        function ()
+        function()
             local c = awful.client.restore()
             -- Focus restored client
             if c then
@@ -328,7 +328,7 @@ globalkeys = gears.table.join(
 
 
     --[[ awful.key({ super }, "x",
-        function ()
+        function()
             awful.prompt.run {
                 prompt       = "Run Lua code: ",
                 textbox      = awful.screen.focused().mypromptbox.widget,
@@ -410,7 +410,7 @@ for i = 1, 9 do
         -- View tag only.
         awful.key(
             { super }, "#" .. i + 9,
-            function ()
+            function()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
                 if tag then
@@ -422,7 +422,7 @@ for i = 1, 9 do
         -- Toggle tag display.
         awful.key(
             { super, "Control" }, "#" .. i + 9,
-            function ()
+            function()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
                 if tag then
@@ -434,7 +434,7 @@ for i = 1, 9 do
         -- Move client to tag.
         awful.key(
             { super, "Shift" }, "#" .. i + 9,
-            function ()
+            function()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]
                     if tag then
@@ -451,7 +451,7 @@ for i = 1, 9 do
         -- Toggle tag on focused client.
         awful.key(
             { super, "Control", "Shift" }, "#" .. i + 9,
-            function ()
+            function()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]
                     if tag then
@@ -603,9 +603,9 @@ client.connect_signal("request::titlebars", function(c)
         { -- Right
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.stickybutton(c),
+            awful.titlebar.widget.ontopbutton(c),
+            awful.titlebar.widget.closebutton(c),
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
