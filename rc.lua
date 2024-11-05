@@ -269,7 +269,7 @@ globalkeys = gears.table.join(
         { description = "swap with previous client by index", group = "client" }
     ),
 
-    -- Standard program
+    -- Apps
     awful.key(
         { super, },  "Return",
         function () awful.spawn(terminal) end,
@@ -279,6 +279,11 @@ globalkeys = gears.table.join(
         { super, }, "b",
         function() awful.spawn("firefox") end,
         { description = "open a browser", group = "launcher" }
+    ),
+    awful.key(
+        { super, }, "t",
+        function() awful.spawn("thunderbird") end,
+        { description = "open email client", group = "launcher" }
     ),
     awful.key(
         { super, "Control" }, "r",
