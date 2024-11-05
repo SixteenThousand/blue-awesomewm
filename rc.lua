@@ -370,14 +370,24 @@ globalkeys = gears.table.join(
         {}
     ),
     awful.key(
-        { }, "XF86AudioLowerVolume",
+        {}, "XF86AudioLowerVolume",
         function() awful.spawn("amixer sset Master 2%-") end,
         {}
     ),
     awful.key(
-        { }, "XF86AudioRaiseVolume",
+        {}, "XF86AudioRaiseVolume",
         function() awful.spawn("amixer sset Master 2%+") end,
         {}
+    ),
+    awful.key(
+        {}, "Print",
+        function() awful.spawn("spectacle -b -f") end,
+        { description = "screeenshot whole desktop \"screen\"" }
+    ),
+    awful.key(
+        { alt }, "Print",
+        function() awful.spawn("spectacle -b -a") end,
+        { description = "screeenshot active window" }
     )
 )
 
