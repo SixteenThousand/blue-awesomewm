@@ -194,9 +194,27 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons
     }
+    
+    -- system monitors
+    s.myi3bar = wibox.widget{
+        widget = wibox.widget.textbox,
+        text = "--------",
+    }
+    awful.spawn.with_line_callback(
+        "i3status",
+        {
+            stdout = function(line)
+                s.myi3bar:set_markup_silently("<b>"..line.."</b>")
+            end,
+            stderr = function(line)
+                naughty.notify("i3status error: "..line)
+            end,
+        }
+    )
+                
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 30, })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -210,6 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            s.myi3bar,
             wibox.widget.textclock(),
             wibox.widget.systray(),
             s.mylayoutbox,
@@ -607,3 +626,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn("setxkbmap -option caps:escape")
+awful.spawn("picom --daemon --backend xrender")
