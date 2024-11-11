@@ -394,7 +394,7 @@ globalkeys = gears.table.join(
 clientkeys = gears.table.join(
     awful.key(
         { super, }, "f",
-        function (c)
+        function(c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
@@ -402,8 +402,13 @@ clientkeys = gears.table.join(
     ),
     awful.key(
         { super, }, "q",
-        function (c) c:kill() end,
+        function(c) c:kill() end,
         { description = "close", group = "client" }
+    ),
+    awful.key(
+        { super, }, "m",
+        function(c) c.maximized = not c.maximized end,
+        {}
     ),
     awful.key(
         { super, "Control" }, "space",
@@ -528,7 +533,7 @@ awful.rules.rules = {
     -- Make sure  most-everything is tiled by default
     {
         rule_any = {
-            instance = { "Thunderbird", "chromium", },
+            type = { "normal", },
         },
         properties = {
             maximized = false,
