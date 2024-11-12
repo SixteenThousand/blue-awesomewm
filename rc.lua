@@ -49,7 +49,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "wezterm"
@@ -59,13 +59,6 @@ editor_cmd = terminal .. " -e " .. editor
 -- +++ MOD KEYS +++
 super = "Mod4"
 alt = "Mod1"
-
--- the location of this file
-if os.getenv("XDG_CONFIG_HOME") then
-    CONF_DIR = os.getenv("XDG_CONFIG_HOME").."/awesome/"
-else
-    CONF_DIR = os.getenv("HOME")..".config/awesome/"
-end
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -208,10 +201,10 @@ awful.screen.connect_for_each_screen(function(s)
         text = "--------",
     }
     awful.spawn.with_line_callback(
-        "i3status -c "..CONF_DIR.."i3status.conf",
+        "i3status -c "..gears.filesystem.get_configuration_dir().."i3status.conf",
         {
             stdout = function(line)
-                s.myi3bar:set_markup_silently("<b>"..line.."</b>")
+                s.myi3bar:set_markup_silently("<b> "..line.." </b>")
             end,
             stderr = function(line)
                 naughty.notify("i3status error: "..line)
@@ -236,7 +229,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             s.myi3bar,
-            wibox.widget.textclock("<b>%A %d %b %Y %H:%M</b>"),
             wibox.widget.systray(),
             s.mylayoutbox,
         },
