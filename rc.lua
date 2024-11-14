@@ -248,6 +248,17 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
+function tag_next_row()
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws + 3) % 9) + 1
+    awful.tag.find_by_name(awful.screen.focused(),tostring(new_ws)):view_only()
+end
+function tag_prev_row()
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws - 3) % 9) + 1
+    awful.tag.find_by_name(awful.screen.focused(),tostring(new_ws)):view_only()
+end
+
 globalkeys = gears.table.join(
     awful.key(
         { super, "Shift" },  "/",
@@ -263,6 +274,36 @@ globalkeys = gears.table.join(
         { super, },  "Right",
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
+    ),
+    awful.key(
+        { super, },  "h",
+        awful.tag.viewprev,
+        { description = "view previous", group = "tag" }
+    ),
+    awful.key(
+        { super, },  "l",
+        awful.tag.viewnext,
+        { description = "view next", group = "tag" }
+    ),
+    awful.key(
+        { super, }, "j",
+        tag_next_row,
+        {}
+    ),
+    awful.key(
+        { super, }, "k",
+        tag_prev_row,
+        {}
+    ),
+    awful.key(
+        { super, }, "Down",
+        tag_next_row,
+        {}
+    ),
+    awful.key(
+        { super, }, "Up",
+        tag_prev_row,
+        {}
     ),
 
     awful.key({ super,}, "w",
