@@ -335,7 +335,12 @@ globalkeys = gears.table.join(
     awful.key(
         { super, },  "Return",
         function() awful.spawn(terminal) end,
-        { description = "open a terminal", group = "launcher" }
+        { description = "open default terminal", group = "launcher" }
+    ),
+    awful.key(
+        { super, "Shift" }, "Return",
+        function() awful.spawn("alacritty -e tmux") end,
+        { description = "alacritty with tmux", group = "launcher" }
     ),
     awful.key(
         { super, }, "b",
