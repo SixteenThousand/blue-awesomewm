@@ -454,6 +454,46 @@ globalkeys = gears.table.join(
     )
 )
 
+function prev_ws_move(c)
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws - 1) % 9) + 1
+    local new_tag = awful.tag.find_by_name(
+        awful.screen.focused(),
+        tostring(new_ws)
+    )
+    c:move_to_tag(new_tag)
+    new_tag:view_only()
+end
+function next_ws_move(c)
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws + 1) % 9) + 1
+    local new_tag = awful.tag.find_by_name(
+        awful.screen.focused(),
+        tostring(new_ws)
+    )
+    c:move_to_tag(new_tag)
+    new_tag:view_only()
+end
+function prev_row_move(c)
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws - 3) % 9) + 1
+    local new_tag = awful.tag.find_by_name(
+        awful.screen.focused(),
+        tostring(new_ws)
+    )
+    c:move_to_tag(new_tag)
+    new_tag:view_only()
+end
+function next_row_move(c)
+    local current_ws = tonumber(awful.screen.focused().selected_tag.name) - 1
+    local new_ws = ((current_ws + 3) % 9) + 1
+    local new_tag = awful.tag.find_by_name(
+        awful.screen.focused(),
+        tostring(new_ws)
+    )
+    c:move_to_tag(new_tag)
+    new_tag:view_only()
+end
 clientkeys = gears.table.join(
     awful.key(
         { super, }, "f",
@@ -477,6 +517,47 @@ clientkeys = gears.table.join(
         { super, "Control" }, "space",
         awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }
+    ),
+    
+    awful.key(
+        { super, "Shift" }, "Left",
+        prev_ws_move,
+        { description = "move window to prev tag", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "Down",
+        next_row_move,
+        { description = "move window down a row", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "Up",
+        prev_row_move,
+        { description = "move window down a row", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "Right",
+        next_ws_move,
+        { description = "move window to next tag", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "h",
+        prev_ws_move,
+        { description = "move window to prev tag", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "j",
+        next_row_move,
+        { description = "move window down a row", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "k",
+        prev_row_move,
+        { description = "move window down a row", group = "client" }
+    ),
+    awful.key(
+        { super, "Shift" }, "l",
+        next_ws_move,
+        { description = "move window to next tag", group = "client" }
     )
 )
 
