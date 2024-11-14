@@ -267,7 +267,7 @@ globalkeys = gears.table.join(
 
     awful.key({ super,}, "w",
         function()
-            awful.client.focus.byidx( 1)
+            awful.client.focus.byidx(1)
         end,
         {description = "focus next by index", group = "client"}
     ),
@@ -280,12 +280,12 @@ globalkeys = gears.table.join(
 
     -- Layout manipulation
     awful.key(
-        { super, "Shift" }, "j",
+        { super, "Shift" }, "w",
         function() awful.client.swap.byidx(1) end,
         { description = "swap with next client by index", group = "client" }
     ),
     awful.key(
-        { super, "Shift" }, "k",
+        { super, "Shift" }, "x",
         function() awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
     ),
@@ -332,33 +332,6 @@ globalkeys = gears.table.join(
         function() awful.layout.inc(-1) end,
         { description = "select previous", group = "layout" }
     ),
-
-    --[[ awful.key(
-        { super, "Control" }, "n",
-        function()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-              c:emit_signal(
-                  "request::activate", "key.unminimize", {raise = true}
-              )
-            end
-        end,
-        {description = "restore minimized", group = "client"}
-    ), ]]
-
-
-    --[[ awful.key({ super }, "x",
-        function()
-            awful.prompt.run {
-                prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. "/history_eval"
-            }
-        end,
-        {description = "lua execute prompt", group = "awesome"}
-    ), ]]
 
     -- Menubar
     awful.key(
