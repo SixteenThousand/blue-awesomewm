@@ -330,6 +330,16 @@ globalkeys = gears.table.join(
         function() awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
     ),
+    awful.key(
+        { super, },  "space",
+        function() awful.layout.inc( 1) end,
+        { description = "select next", group = "layout" }
+    ),
+    awful.key(
+        { super,  "Shift"   },  "space",
+        function() awful.layout.inc(-1) end,
+        { description = "select previous", group = "layout" }
+    ),
 
     -- Apps
     awful.key(
@@ -366,17 +376,6 @@ globalkeys = gears.table.join(
         { super, "Shift" }, "Delete",
         function() awesome.spawn("systemctl poweroff") end,
         { description = "turn off computer", group = "awesome" }
-    ),
-
-    awful.key(
-        { super, },  "space",
-        function() awful.layout.inc( 1) end,
-        { description = "select next", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Shift"   },  "space",
-        function() awful.layout.inc(-1) end,
-        { description = "select previous", group = "layout" }
     ),
 
     -- Menubar
@@ -428,6 +427,18 @@ globalkeys = gears.table.join(
         { alt }, "Print",
         function() awful.spawn("spectacle -b -a") end,
         { description = "screeenshot active window" }
+    ),
+    
+    -- Misc
+    awful.key(
+        { super, }, "n",
+        function()
+            naughty.destroy_all_notifications(
+                nil,
+                naughty.notificationClosedReason.dismissedByUser
+            )
+        end,
+        {}
     )
 )
 
