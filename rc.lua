@@ -67,9 +67,8 @@ alt = "Mod1"
 awful.layout.layouts = {
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
+    awful.layout.suit.max,
 }
 -- }}}
 
@@ -351,6 +350,11 @@ globalkeys = gears.table.join(
         { super,  "Shift"   },  "space",
         function() awful.layout.inc(-1) end,
         { description = "select previous", group = "layout" }
+    ),
+    awful.key(
+        { super, alt }, "l",
+        function() awful.layout.inc(1,awful.screen.focused()) end,
+        { description = "switch to next layout", group = "layout" }
     ),
 
     -- Apps
