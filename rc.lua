@@ -425,6 +425,11 @@ globalkeys = gears.table.join(
         {}
     ),
     awful.key(
+        {}, "XF86AudioMute",
+        function() awful.spawn("amixer sset Master toggle") end,
+        {}
+    ),
+    awful.key(
         {}, "XF86AudioLowerVolume",
         function() awful.spawn("amixer sset Master 2%-") end,
         {}
