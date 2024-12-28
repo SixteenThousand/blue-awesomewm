@@ -302,6 +302,16 @@ globalkeys = gears.table.join(
         tag_prev_row,
         {}
     ),
+    -- basically copied from a reddit user, link below
+    -- https://www.reddit.com/r/awesomewm/comments/kr2fbi/how_to_autohide_statusbar/
+    awful.key(
+        { super, }, "Escape",
+        function()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible
+        end,
+        {description = "show/hide panel", group = "Awesome"}
+    ),
 
     awful.key({ super,}, "w",
         function()
