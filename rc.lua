@@ -418,12 +418,20 @@ globalkeys = gears.table.join(
     -- hardware stuff
     awful.key(
         {}, "XF86MonBrightnessDown",
-        function() awful.spawn("brightnessctl set 5%-") end,
+        function()
+            awful.spawn(
+                gears.filesystem.get_configuration_dir().."/change_brightness 5 -"
+            )
+        end,
         {}
     ),
     awful.key(
         {}, "XF86MonBrightnessUp",
-        function() awful.spawn("brightnessctl set 5%+") end,
+        function()
+            awful.spawn(
+                gears.filesystem.get_configuration_dir().."/change_brightness 5 +"
+            )
+        end,
         {}
     ),
     awful.key(
@@ -433,17 +441,29 @@ globalkeys = gears.table.join(
     ),
     awful.key(
         {}, "XF86AudioMute",
-        function() awful.spawn("amixer sset Master toggle") end,
+        function()
+            awful.spawn(
+                gears.filesystem.get_configuration_dir().."/change_volume mute"
+            )
+        end,
         {}
     ),
     awful.key(
         {}, "XF86AudioLowerVolume",
-        function() awful.spawn("amixer sset Master 2%-") end,
+        function()
+            awful.spawn(
+                gears.filesystem.get_configuration_dir().."/change_volume - 2"
+            )
+        end,
         {}
     ),
     awful.key(
         {}, "XF86AudioRaiseVolume",
-        function() awful.spawn("amixer sset Master 2%+") end,
+        function()
+            awful.spawn(
+                gears.filesystem.get_configuration_dir().."/change_volume + 2"
+            )
+        end,
         {}
     ),
     awful.key(
