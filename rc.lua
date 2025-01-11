@@ -55,7 +55,7 @@ theme.font = "FantasqueSansM Nerd Font 13",
 beautiful.init(theme)
 
 -- This is used later as the default terminal and editor to run.
-terminal = "wezterm"
+terminal = os.getenv("TERMINAL") or "wezterm"
 editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
