@@ -764,6 +764,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-awful.spawn("setxkbmap -option caps:escape")
-awful.spawn("picom --daemon --backend glx --vsync")
-awful.spawn(os.getenv("HOME").."/.fehbg")
+awful.spawn("sh "..gears.filesystem.get_configuration_dir().."/misc_settings.sh")
