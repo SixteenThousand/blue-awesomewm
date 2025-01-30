@@ -10,5 +10,5 @@ picom --daemon --backend glx --vsync
 $HOME/.fehbg
 
 # Change default cursor size
-echo 'Xcursor.size: 36' | xrdb -
-xsetroot -xcf /usr/share/icons/breeze_cursors/cursors/default 36
+echo 'Xcursor.size: 48' | xrdb -
+xsetroot -xcf /usr/share/icons/Adwaita/cursors/default 48

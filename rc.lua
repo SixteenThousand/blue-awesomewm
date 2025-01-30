@@ -733,6 +733,8 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+
+    awful.spawn("xsetroot -xcf /usr/share/icons/Adwaita/cursors/default 48")
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
