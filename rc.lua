@@ -359,7 +359,7 @@ globalkeys = gears.table.join(
         { description = "select previous", group = "layout" }
     ),
     awful.key(
-        { super, alt }, "l",
+        { super, alt }, "Return",
         function() awful.layout.inc(1,awful.screen.focused()) end,
         { description = "switch to next layout", group = "layout" }
     ),
@@ -786,4 +786,8 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+-- {{{ Misc.
+
+naughty.config.defaults.position = "bottom_right"
 awful.spawn("sh "..gears.filesystem.get_configuration_dir().."/misc_settings.sh")
+-- }}}
