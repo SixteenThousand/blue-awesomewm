@@ -262,42 +262,42 @@ globalkeys = gears.table.join(
         { description="show help", group="awesome" }
     ),
     awful.key(
-        { super, },  "Left",
+        { super, },  "Up",
         awful.tag.viewprev,
         { description = "view previous", group = "tag" }
     ),
     awful.key(
-        { super, },  "Right",
+        { super, },  "Down",
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
     ),
     awful.key(
-        { super, },  "h",
+        { super, },  "k",
         awful.tag.viewprev,
         { description = "view previous", group = "tag" }
     ),
     awful.key(
-        { super, },  "l",
+        { super, },  "j",
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
     ),
     awful.key(
-        { super, }, "j",
+        { super, }, "l",
         tag_next_row,
         {}
     ),
     awful.key(
-        { super, }, "k",
+        { super, }, "h",
         tag_prev_row,
         {}
     ),
     awful.key(
-        { super, }, "Down",
+        { super, }, "Right",
         tag_next_row,
         {}
     ),
     awful.key(
-        { super, }, "Up",
+        { super, }, "Left",
         tag_prev_row,
         {}
     ),
