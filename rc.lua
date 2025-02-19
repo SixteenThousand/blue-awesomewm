@@ -419,18 +419,14 @@ globalkeys = gears.table.join(
     awful.key(
         {}, "XF86MonBrightnessDown",
         function()
-            awful.spawn(
-                gears.filesystem.get_configuration_dir().."/change_brightness 5 -"
-            )
+            awful.spawn("desktopctl mon - 10")
         end,
         {}
     ),
     awful.key(
         {}, "XF86MonBrightnessUp",
         function()
-            awful.spawn(
-                gears.filesystem.get_configuration_dir().."/change_brightness 5 +"
-            )
+            awful.spawn("desktopctl mon + 10")
         end,
         {}
     ),
@@ -442,27 +438,21 @@ globalkeys = gears.table.join(
     awful.key(
         {}, "XF86AudioMute",
         function()
-            awful.spawn(
-                gears.filesystem.get_configuration_dir().."/change_volume mute"
-            )
+            awful.spawn("desktopctl mute")
         end,
         {}
     ),
     awful.key(
         {}, "XF86AudioLowerVolume",
         function()
-            awful.spawn(
-                gears.filesystem.get_configuration_dir().."/change_volume - 2"
-            )
+            awful.spawn("desktopctl vol - 2")
         end,
         {}
     ),
     awful.key(
         {}, "XF86AudioRaiseVolume",
         function()
-            awful.spawn(
-                gears.filesystem.get_configuration_dir().."/change_volume + 2"
-            )
+            awful.spawn("desktopctl vol + 2")
         end,
         {}
     ),

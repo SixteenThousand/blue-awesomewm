@@ -1,7 +1,0 @@
-#!/bin/sh
-
-brightnessctl -q set $1%$2
-VALUE=$(brightnessctl -q -P get)
-notify-send -e -t 600 \
-	-h string:x-canonical-private-synchronous:brightness \
-	-h "int:value:$VALUE" "Brightness: $VALUE%"
