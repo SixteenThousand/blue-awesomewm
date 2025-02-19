@@ -51,7 +51,8 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 theme = beautiful.get()
-theme.font = "FantasqueSansM Nerd Font 13",
+theme.font = "FantasqueSansM Nerd Font 14"
+theme.border_width = 0
 beautiful.init(theme)
 
 -- This is used later as the default terminal and editor to run.
@@ -774,6 +775,16 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+tag.connect_signal("property::layout", function(t)
+    local bw = 1
+    if t.layout.name == "max" then
+        bw = 0
+    end
+    for _,c in ipairs(t:clients()) do
+        c.border_width = bw
+    end
+end)
 -- }}}
 
 -- {{{ Misc.
