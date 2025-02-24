@@ -15,3 +15,6 @@ xsetroot -xcf /usr/share/icons/Adwaita/cursors/default 48
 # turn off screen saving
 xset -dpms
 xset s off
+
+# open some apps
+desktopctl autostart

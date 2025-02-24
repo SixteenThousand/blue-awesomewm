@@ -262,6 +262,7 @@ globalkeys = gears.table.join(
         hotkeys_popup.show_help,
         { description="show help", group="awesome" }
     ),
+    -- tag navigation
     awful.key(
         { super, },  "Up",
         awful.tag.viewprev,
@@ -301,6 +302,13 @@ globalkeys = gears.table.join(
         { super, }, "Left",
         tag_prev_row,
         {}
+    ),
+    awful.key(
+        { super, }, "space",
+        function()
+            awful.tag.history.restore(awful.screen.focused(),"previous")
+        end,
+        { description = "view last viewed", group = "tag" }
     ),
     -- basically copied from a reddit user, link below
     -- https://www.reddit.com/r/awesomewm/comments/kr2fbi/how_to_autohide_statusbar/
@@ -348,16 +356,6 @@ globalkeys = gears.table.join(
         { super, "Shift" }, "x",
         function() awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
-    ),
-    awful.key(
-        { super, },  "space",
-        function() awful.layout.inc( 1) end,
-        { description = "select next", group = "layout" }
-    ),
-    awful.key(
-        { super,  "Shift"   },  "space",
-        function() awful.layout.inc(-1) end,
-        { description = "select previous", group = "layout" }
     ),
     awful.key(
         { super, alt }, "Return",
