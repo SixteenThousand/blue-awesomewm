@@ -1,4 +1,6 @@
+CONFIG_DIR=${HOME}/.config/awesome
 install:
-	ln -s $(PWD) ~/.config/awesome
+	mkdir -p $$(dirname ${CONFIG_DIR})
+	ln -s ${PWD} ${CONFIG_DIR}
 uninstall:
-	rm ~/.config/awesome
+	rm ${CONFIG_DIR}
